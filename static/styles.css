@@ -1,0 +1,207 @@
+:root {
+  --primary-neon: #00ffff;  /* Bright cyan */
+  --secondary-neon: #ff00ff;  /* Bright magenta */
+  --background-dark: #0a0a1a;
+  --text-primary: #00ffff;
+  --text-secondary: #ff00ff;
+  --glitch-blue: rgba(0, 255, 255, 0.5);
+  --glitch-pink: rgba(255, 0, 255, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', 'Courier New', monospace;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.cyberpunk-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: glitch-animation 2s infinite linear;
+}
+
+@keyframes glitch-animation {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.cyberpunk-form {
+  background: rgba(10, 10, 26, 0.8);
+  border: 2px solid var(--primary-neon);
+  padding: 3rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 10px var(--primary-neon),
+    0 0 20px var(--secondary-neon);
+}
+
+.cyberpunk-form::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 255, 0.05),
+    rgba(255, 0, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: background-glitch 5s infinite;
+  z-index: -1;
+}
+
+@keyframes background-glitch {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(15%, 10%); }
+  60% { transform: translate(0, 0); }
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--primary-neon);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--secondary-neon);
+  box-shadow: 0 0 10px var(--primary-neon);
+}
+
+.cyberpunk-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-neon);
+  color: var(--background-dark);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.cyberpunk-btn:hover {
+  background: var(--secondary-neon);
+}
+
+.cyberpunk-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.3s ease;
+}
+
+.cyberpunk-btn:hover::before {
+  left: 100%;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-icon {
+  color: var(--primary-neon);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: var(--secondary-neon);
+}
+
+.dashboard-header {
+  background: linear-gradient(to right, var(--primary-neon), var(--secondary-neon));
+  color: var(--background-dark);
+  padding: 1rem;
+  text-align: center;
+}
+
+.dashboard-content {
+  background: rgba(10, 10, 26, 0.9);
+  border: 2px solid var(--secondary-neon);
+  padding: 2rem;
+  text-align: center;
+  box-shadow:
+    0 0 15px var(--primary-neon),
+    0 0 25px var(--secondary-neon);
+}
+
+.logout-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--secondary-neon);
+  color: var(--background-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: var(--primary-neon);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .cyberpunk-form {
+    margin: 1rem;
+    padding: 2rem;
+  }
+}
