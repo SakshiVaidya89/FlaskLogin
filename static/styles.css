@@ -30,6 +30,13 @@ body {
   overflow: hidden;
 }
 
+.cyberpunk-error {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .glitch-overlay {
   position: fixed;
   top: 0;
@@ -172,7 +179,15 @@ body {
   background: linear-gradient(to right, var(--primary-neon), var(--secondary-neon));
   color: var(--background-dark);
   padding: 1rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .dashboard-content {
@@ -186,16 +201,19 @@ body {
 }
 
 .logout-btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background: var(--secondary-neon);
-  color: var(--background-dark);
-  text-decoration: none;
-  transition: all 0.3s ease;
+  text-decoration: none;        /* Remove underline from link */
+    padding: 0.5rem 1rem;         /* Add padding for button styling */
+    background: var(--primary-neon); /* Use your theme colors */
+    color: var(--background-dark);   /* Button text color */
+    border-radius: 5px;           /* Slight rounding for better appearance */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-left: auto;
 }
 
 .logout-btn:hover {
-  background: var(--primary-neon);
+  background: var(--secondary-neon);
 }
 
 /* Responsive Adjustments */

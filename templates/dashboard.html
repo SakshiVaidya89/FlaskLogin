@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Dashboard</title>
+    <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header class="dashboard-header">
-        <h1>SYSTEM INTERFACE</h1>
+        <h1 class="dashboard-title">SYSTEM INTERFACE</h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+                DISCONNECT
+        </a>
     </header>
 
     <div class="cyberpunk-container">
@@ -23,9 +26,7 @@
                 CONNECTION STATUS: ACTIVE
             </p>
 
-            <a href="{{ url_for('logout') }}" class="cyberpunk-btn logout-btn">
-                DISCONNECT
-            </a>
+
         </div>
     </div>
 </body>

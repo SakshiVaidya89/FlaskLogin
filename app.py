@@ -37,7 +37,7 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
-    return redirect(url_for('login'))
+    return render_template('entry_page.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -74,7 +74,8 @@ def login():
             login_user(user_obj)
             return redirect(url_for('dashboard'))
         else:
-            return 'Invalid login credentials', 401
+            error = 'Invalid login credentials'
+            return render_template('login.html', error=error)
     return render_template('login.html')
 
 @app.route('/logout')

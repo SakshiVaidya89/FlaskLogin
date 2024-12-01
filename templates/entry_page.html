@@ -3,79 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetRx Terminal - Cyberpunk Entry</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        @keyframes glitch-line {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100vw); }
+        :root {
+            --primary-neon: #00ffff;  /* Bright cyan */
+            --secondary-neon: #ff00ff;  /* Bright magenta */
+            --background-dark: #0a0a1a;
+            --text-primary: #00ffff;
+            --text-secondary: #ff00ff;
+            --glitch-blue: rgba(0, 255, 255, 0.5);
+            --glitch-pink: rgba(255, 0, 255, 0.5);
         }
-        @keyframes terminal-flicker {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', 'Courier New', monospace;
         }
+
         body {
-            background: linear-gradient(45deg, #000000, #001a00);
-            font-family: 'Orbitron', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
-        .neon-glow {
-            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+
+        .cyberpunk-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-        .glitch-line {
-            animation: glitch-line 5s linear infinite;
+
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: glitch-animation 2s infinite linear;
         }
-        .terminal-flicker {
-            animation: terminal-flicker 0.1s infinite;
+
+        @keyframes glitch-animation {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        .cyberpunk-form {
+            background: rgba(10, 10, 26, 0.8);
+            border: 2px solid var(--primary-neon);
+            padding: 3rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 10px var(--primary-neon),
+                0 0 20px var(--secondary-neon);
+        }
+
+        .cyberpunk-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 255, 0.05),
+                rgba(255, 0, 255, 0.05) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: background-glitch 5s infinite;
+            z-index: -1;
+        }
+
+        @keyframes background-glitch {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -10%); }
+            20% { transform: translate(-15%, 5%); }
+            30% { transform: translate(7%, -25%); }
+            40% { transform: translate(-5%, 25%); }
+            50% { transform: translate(15%, 10%); }
+            60% { transform: translate(0, 0); }
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--primary-neon);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary-neon);
+            box-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        .cyberpunk-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary-neon);
+            color: var(--background-dark);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .cyberpunk-btn:hover {
+            background: var(--secondary-neon);
+        }
+
+        .cyberpunk-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.3s ease;
+        }
+
+        .cyberpunk-btn:hover::before {
+            left: 100%;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-icon {
+            color: var(--primary-neon);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--secondary-neon);
+        }
+
+        .register-link {
+            color: var(--primary-neon);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .register-link:hover {
+            color: var(--secondary-neon);
+        }
+
+        @media (max-width: 768px) {
+            .cyberpunk-form {
+                margin: 1rem;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
-<body class="bg-black text-green-400 min-h-screen flex items-center justify-center p-4 overflow-hidden">
-    <div class="relative z-10 w-full max-w-md bg-gray-900/80 border-2 border-green-500 rounded-xl shadow-2xl p-8 space-y-6 backdrop-blur-sm">
-        <div class="flex items-center justify-center space-x-3 mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <h1 class="text-3xl font-bold tracking-wider uppercase neon-glow">NetRx Terminal</h1>
-        </div>
+<body>
+    <div class="cyberpunk-container">
+        <div class="glitch-overlay"></div>
+        <form class="cyberpunk-form">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-neon);">WELCOME VISITOR</h2>
 
-        <div class="flex border-2 border-green-500 rounded-lg overflow-hidden mb-6">
-            <button class="w-1/2 py-2 bg-green-500 text-black font-bold uppercase tracking-wider">
-                <a href="/login">Login</a>
-            </button>
-            <button class="w-1/2 py-2 text-green-400 hover:bg-gray-800 font-bold uppercase tracking-wider">
-                <a href="/register">Register</a>
-            </button>
-        </div>
+            <button type="submit" class="cyberpunk-btn"><a href="{{ url_for('login') }}">LOGIN</a></button>
+            <br><br><br>
+            <button type="submit" class="cyberpunk-btn"><a href="{{ url_for('register') }}">REGISTER</a></button>
 
-        <form class="space-y-4">
-            <input
-                type="text"
-                placeholder="USERNAME"
-                class="w-full bg-gray-800 border-2 border-green-500 rounded-lg py-3 px-4 text-green-400 placeholder-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 uppercase tracking-wider"
-            >
-            <input
-                type="password"
-                placeholder="PASSWORD"
-                class="w-full bg-gray-800 border-2 border-green-500 rounded-lg py-3 px-4 text-green-400 placeholder-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 uppercase tracking-wider"
-            >
-            <button
-                type="submit"
-                class="w-full bg-green-500 text-black py-3 rounded-lg uppercase font-bold tracking-wider hover:bg-green-400 transition-colors duration-300 terminal-flicker"
-            >
-                Access Terminal
-            </button>
         </form>
-
-        <div class="text-center text-xs text-green-600 mt-4">
-            <p class="opacity-70">Unauthorized access is prohibited</p>
-        </div>
-    </div>
-
-    <!-- Glitch Effect Overlay -->
-    <div class="fixed inset-0 pointer-events-none z-20">
-        <div class="absolute top-0 left-0 w-full h-1 bg-green-500 glitch-line opacity-50"></div>
-        <div class="absolute bottom-0 left-0 w-full h-1 bg-green-500 glitch-line opacity-50"></div>
     </div>
 </body>
 </html>
